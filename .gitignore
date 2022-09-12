@@ -1,0 +1,18 @@
+# editor
+.idea/
+.vscode/
+
+# build
+build/
+dist/
+dist_scripts/
+node_modules/
+
+# temporary
+temp/
+tmp/
+*.swp
+
+# log
+logs/
+yarn-error.log
