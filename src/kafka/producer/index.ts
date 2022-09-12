@@ -21,7 +21,7 @@ export class KafkaProducer {
 		this.producer = this.kafka.producer({
 			allowAutoTopicCreation: false,
 			transactionTimeout: 30000,
-			createPartitioner: usingCustomPartitioner && this.generateCustomPartitioner,
+			createPartitioner: (usingCustomPartitioner && this.generateCustomPartitioner) || undefined,
 		})
 	}
 
