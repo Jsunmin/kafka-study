@@ -1,6 +1,6 @@
-import { KafkaConsumer } from './kafka/consumer'
+import { KafkaConsumer } from './kafkaModule/consumer'
 import * as dotenv from 'dotenv'
-import { TOPICS } from './kafka'
+import { TOPICS } from './kafkaModule'
 
 dotenv.config()
 async function start() {
@@ -12,7 +12,7 @@ async function start() {
 		clientId: 'kafka-worker-2',
 	})
 	const topics: Array<typeof TOPICS[number]> = ['test']
-	const fromBeginning = false
+	const fromBeginning = true
 	await consumer.init(topics, fromBeginning)
 	await consumer.listen({})
 
