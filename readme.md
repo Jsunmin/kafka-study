@@ -21,7 +21,14 @@
 ### libs
  - @grpc/proto-loader
  - @grpc/grpc-js
+
+### 정리
+ - proto-loader-gen-types:
+    - goal is to have type information available when editing and building code that uses @grpc/proto-loader to load .proto files at runtime.
+    - .proto를 체크하지 못하는 ts를 위한 셋업 cli
+    - packagedefinition을 받아와 ts환경에서 쓸 수 있다!
+    - packag로 폴더링 가능! (동명시 충돌 주의;; ~ 덮어쓴다)
 ### 자료
  - https://npmtrends.com/@grpc/grpc-js-vs-@grpc/proto-loader-vs-grpc-vs-grpc-caller-vs-grpc-tools
  - https://www.trendmicro.com/pl_pl/devops/22/f/grpc-api-tutorial.html
- - 
+ - https://github.com/grpc/proposal/blob/master/L70-node-proto-loader-type-generator.md

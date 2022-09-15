@@ -1,8 +1,11 @@
 import * as path from 'path'
 import * as grpc from '@grpc/grpc-js'
 import * as protoLoader from '@grpc/proto-loader'
+// proto-loader-gen-types cli로 생성한 ts type
+import { ProtoGrpcType } from './generated/password'
 
-const PROTO_PATH = path.join(__dirname, './password.proto')
+// proto file path
+const PROTO_PATH = path.join(__dirname, './proto/password.proto')
 
 const loaderOptions = {
 	keepCase: true,
@@ -12,8 +15,12 @@ const loaderOptions = {
 	oneofs: true,
 }
 
+// 프로토파일을가져와 셋업한 패키지 정의
 const packageDef = protoLoader.loadSync(PROTO_PATH, loaderOptions)
-const passwordProto = grpc.loadPackageDefinition(packageDef)
+
+// 패키지 정의로 grpc 객체 생성
+// using proto-loader-gen-types ~ 생성된 타입으로 강제설정 처리
+const passwordProto = grpc.loadPackageDefinition(packageDef) as unknown as ProtoGrpcType
 
 const dummyRecords = {
 	passwords: [
@@ -25,10 +32,7 @@ const dummyRecords = {
 function main() {
 	const ourServer = new grpc.Server()
 
-	// 강제 타입 할당을 해야만 하나?..
-	const PasswordService = passwordProto.PasswordService as grpc.ServiceClientConstructor
-
-	ourServer.addService(PasswordService.service, {
+	ourServer.addService(passwordProto.tutorial.PasswordService.service, {
 		RetrievePasswords: (_passwordMessage, callback) => {
 			callback(null, dummyRecords)
 		},

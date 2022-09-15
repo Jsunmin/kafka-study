@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package test;
+
+// message 예약어로 인터페이스 규정
+message PasswordDetails1 {
+    string id = 1;
+    string password = 2;
+    string hashValue = 3;
+    string saltValue = 4;
+}
+message PasswordList1 {
+   repeated PasswordDetails1 passwords = 1;
+}

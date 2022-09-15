@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup:docker": "docker compose up -d",
     "start:consumer": "npx ts-node ./src/worker.ts",
-    "start:producer": "npx ts-node ./src/simpleProducer.ts"
+    "start:producer": "npx ts-node ./src/simpleProducer.ts",
+    "grpc:tutorial:proto:gen": " rm -rf src/grpc/tutorial/generated/ && npx proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/grpc/tutorial/generated/ src/grpc/tutorial/proto/*.proto",
+    "grpc:tutorial:start:server": "npx ts-node src/grpc/tutorial/server.ts",
+    "grpc:tutorial:start:client": "npx ts-node src/grpc/tutorial/client.ts"
   },
   "keywords": [],
   "author": "",
