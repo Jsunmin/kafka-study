@@ -1,6 +1,6 @@
-import { KafkaConsumer } from './kafkaModule/consumer'
+import { KafkaConsumer } from './consumer'
 import * as dotenv from 'dotenv'
-import { TOPICS } from './kafkaModule'
+import { TOPICS } from '..'
 
 dotenv.config()
 async function start() {

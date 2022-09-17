@@ -1,6 +1,6 @@
 import { Kafka, logLevel, Producer, Message, PartitionerArgs } from 'kafkajs'
 import * as _ from 'lodash'
-import { TOPICS } from '..'
+import { TOPICS } from '../..'
 
 export class KafkaProducer {
 	private readonly kafka: Kafka

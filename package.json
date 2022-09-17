@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "rm -rf dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup:docker": "docker compose up -d",
-    "start:consumer": "npx ts-node ./src/worker.ts",
-    "start:producer": "npx ts-node ./src/simpleProducer.ts",
-    "grpc:tutorial:proto:gen": " rm -rf src/grpc/tutorial/generated/ && npx proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/grpc/tutorial/generated/ src/grpc/tutorial/proto/*.proto",
+    "start:kafka:consumer": "npx ts-node ./src/kafka/kafka/worker.ts",
+    "start:kafka:producer": "npx ts-node ./src/kafka/kafka/simpleProducer.ts",
+    "start:streams:kstream": "npx ts-node ./src/kafka/kafkaStreams/kStream.ts",
+    "start:streams:ktable": "npx ts-node ./src/kafka/kafkaStreams/kTable.ts",
+    "grpc:tutorial:proto:gen": "rm -rf src/grpc/tutorial/generated/ && npx proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/grpc/tutorial/generated/ src/grpc/tutorial/proto/*.proto",
     "grpc:tutorial:start:server": "npx ts-node src/grpc/tutorial/server.ts",
     "grpc:tutorial:start:client": "npx ts-node src/grpc/tutorial/client.ts"
   },
@@ -28,7 +31,9 @@
     "@grpc/grpc-js": "^1.7.0",
     "@grpc/proto-loader": "^0.7.2",
     "dotenv": "^16.0.2",
+    "kafka-streams": "^5.0.0",
     "kafkajs": "^2.2.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "node-rdkafka": "^2.13.0"
   }
 }

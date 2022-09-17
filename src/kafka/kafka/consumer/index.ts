@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 import { Consumer, Kafka, logLevel } from 'kafkajs'
-import { TOPICS } from '..'
+import { TOPICS } from '../..'
 
 export class KafkaConsumer {
 	private readonly kafka: Kafka

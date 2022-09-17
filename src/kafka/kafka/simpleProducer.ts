@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-import { KafkaProducer } from './kafkaModule/producer'
+import { KafkaProducer } from './producer'
 
 dotenv.config()
 async function testTopicSend() {
