@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
 	database: 'test',
 	entities: [path.join(__dirname, '/entities/**/*{.ts,.js}')],
 	// synchronize: true,
-	logging: true,
+	// logging: true,
 })
 
 export async function initDb() {

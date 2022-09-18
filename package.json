@@ -16,7 +16,7 @@
     "grpc:tutorial:proto:gen": "rm -rf src/grpc/tutorial/generated/ && npx proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/grpc/tutorial/generated/ src/grpc/tutorial/proto/*.proto",
     "grpc:tutorial:start:server": "npx ts-node src/grpc/tutorial/server.ts",
     "grpc:tutorial:start:client": "npx ts-node src/grpc/tutorial/client.ts",
-    "start:sync": "npx ts-node src/syncIssue/index.ts"
+    "start:sync": "yarn build && node dist/src/syncIssue/index.js"
   },
   "keywords": [],
   "author": "",
