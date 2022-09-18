@@ -7,4 +7,6 @@ export const TOPICS = [
 	'filteredStreamLog',
 	'tableLog',
 	'filteredJoinLog',
+	// admin & rebalancing
+	'rebalancing',
 ] as const

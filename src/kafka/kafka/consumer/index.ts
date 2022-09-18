@@ -34,7 +34,7 @@ export class KafkaConsumer {
 			const Prefixedtopics = _.map(topics, (topic) => `${this.topicPrefix}${topic}`)
 			await this.consumer.subscribe({ topics: Prefixedtopics, fromBeginning })
 			this.isInit = true
-			console.log(`consuer [${this.clientId}] listening ->`, Prefixedtopics)
+			console.log(`consumer [${this.clientId}] listening ->`, Prefixedtopics)
 		}
 		return this.isInit
 	}

@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup:docker": "docker compose up -d",
     "start:kafka:consumer": "npx ts-node ./src/kafka/kafka/worker.ts",
+    "start:kafka:consumerGroup": "yarn build && npx pm2 start",
     "start:kafka:producer": "npx ts-node ./src/kafka/kafka/simpleProducer.ts",
     "start:kafka:broker": "npx ts-node ./src/kafka/kafka/adminBroker.ts",
     "start:streams:kstream": "npx ts-node ./src/kafka/kafkaStreams/kStream.ts",
