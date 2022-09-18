@@ -7,6 +7,8 @@ export class KafkaConsumer {
 
 	private readonly consumer: Consumer
 
+	private readonly clientId: string
+
 	private readonly topicPrefix = process.env.KAFKA_TOPIC_PREFIX || 'test-'
 
 	private isInit = false
@@ -23,6 +25,7 @@ export class KafkaConsumer {
 			groupId,
 			// partitionAssigners ~ 해당 기능으로 직접 컨슈머에 파티션 할당해주는 커스텀 로직 구성 가능! (== producer custom partitioner)
 		})
+		this.clientId = clientId
 	}
 
 	async init(topics: Array<typeof TOPICS[number]>, fromBeginning = false) {
@@ -31,6 +34,7 @@ export class KafkaConsumer {
 			const Prefixedtopics = _.map(topics, (topic) => `${this.topicPrefix}${topic}`)
 			await this.consumer.subscribe({ topics: Prefixedtopics, fromBeginning })
 			this.isInit = true
+			console.log(`consuer [${this.clientId}] listening ->`, Prefixedtopics)
 		}
 		return this.isInit
 	}
