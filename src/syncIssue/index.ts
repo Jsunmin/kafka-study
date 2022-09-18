@@ -1,4 +1,5 @@
-import { atomicDecreaseQuantity, decreaseQuantity, getQuantity, pessimisticLockDecreaseQuantity } from './db/repositories/stock.repositories'
+import { atomicDecreaseQuantity, decreaseQuantity, getQuantity, pessimisticLockDecreaseQuantity, redisLockDecreaseQuantity } from './db/repositories/stock.repositories'
+import { getRedis } from './redis/index'
 import { Worker, isMainThread, parentPort , workerData} from 'worker_threads'
 import { closeDb, initDb } from './db/typeorm'
 import { sleep } from './util'
@@ -12,6 +13,7 @@ const decreasequantityPerRequest = 1
 // 100 request
 async function main(requests: number) {
 	await initDb()
+	await getRedis()
 	try {
 		// 1 sync로 작업처리됨
 		// for (const _cnt of Array.from({length: requests})) {
@@ -31,7 +33,7 @@ async function main(requests: number) {
 		// console.log('result', result)
 
 		// 4 워커 처리
-		await doWorkerJob(requestCnt)
+		await doWorkerJob(requests)
 
 	} catch (err) {
 		console.error(err)
@@ -68,7 +70,11 @@ async function doWorkerJob(workerCnt: number) {
 		// parentPort.postMessage({wid, q: stock.affected});
 	  
 		// 비관적락 처리
-		const stock = await pessimisticLockDecreaseQuantity(id, decreaseQ)
+		// const stock = await pessimisticLockDecreaseQuantity(id, decreaseQ)
+		// parentPort.postMessage({wid, q: stock.quantity});
+
+		// redis lock 처리
+		const stock = await redisLockDecreaseQuantity(id, decreaseQ)
 		parentPort.postMessage({wid, q: stock.quantity});
 	 }
 }
