@@ -15,7 +15,8 @@
     "start:streams:ktable": "npx ts-node ./src/kafka/kafkaStreams/kTable.ts",
     "grpc:tutorial:proto:gen": "rm -rf src/grpc/tutorial/generated/ && npx proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/grpc/tutorial/generated/ src/grpc/tutorial/proto/*.proto",
     "grpc:tutorial:start:server": "npx ts-node src/grpc/tutorial/server.ts",
-    "grpc:tutorial:start:client": "npx ts-node src/grpc/tutorial/client.ts"
+    "grpc:tutorial:start:client": "npx ts-node src/grpc/tutorial/client.ts",
+    "start:sync": "npx ts-node src/syncIssue/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,8 @@
     "kafka-streams": "^5.0.0",
     "kafkajs": "^2.2.0",
     "lodash": "^4.17.21",
-    "node-rdkafka": "^2.13.0"
+    "mysql2": "^2.3.3",
+    "node-rdkafka": "^2.13.0",
+    "typeorm": "^0.3.9"
   }
 }
