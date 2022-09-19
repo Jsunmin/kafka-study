@@ -1,6 +1,7 @@
 # studty
  - ### kafka
  - ### grpc
+ - ### synchronize
 </br>
 
 ## kafka
@@ -45,6 +46,7 @@
  - 카프카 커넥트: 데이터 파이프라인을 반복적으로 생성할때 사용하는 앱
 
 </br></br>
+
 ## grpc
 ### libs
  - @grpc/proto-loader
@@ -60,3 +62,10 @@
  - https://npmtrends.com/@grpc/grpc-js-vs-@grpc/proto-loader-vs-grpc-vs-grpc-caller-vs-grpc-tools
  - https://www.trendmicro.com/pl_pl/devops/22/f/grpc-api-tutorial.html
  - https://github.com/grpc/proposal/blob/master/L70-node-proto-loader-type-generator.md
+
+
+ ## 동시성 이슈
+  - 디비 lock (pessimistic/optimistic) & 데드락 핸들링
+  - 디비 atomic operation
+  - redis key/value ~ lock 활용 (spin lock || pub/sub)
+  - 캐싱 (sql -> redis) & atomic operation & batch sync to db ** 

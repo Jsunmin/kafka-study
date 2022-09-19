@@ -45,6 +45,9 @@ export class KafkaConsumer {
 		}
 
 		await this.consumer.run({
+			// 메시지 바이트로 받아서 처리 ~ 바이트 나 시간단위로 처리 가능
+			// eachBatch
+			// 각 메시지 한개씩 처리
 			eachMessage: async ({ topic: Prefixedtopic, partition, message }) => {
 				try {
 					const topic = Prefixedtopic.replace(this.topicPrefix, '')
